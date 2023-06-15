@@ -1,3 +1,5 @@
+import java.util.Collections;
+import java.util.*;
 public class Board {
     char[][] letterGrid;
     int size;
@@ -23,7 +25,27 @@ public class Board {
     public static void main(String[] args) {
         Board board = new Board(5);
         board.printBoard();
+
+        ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+        int value = 0;
+        for (int i = 0; i < 4; i++) {
+            ArrayList<Integer> sublist = new ArrayList<>();
+            for (int j = 0; j < 4; j++) {
+                sublist.add(value++);
+            }
+            list.add(sublist);
+        }
+        Collections.shuffle(list);
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j ++) {
+                System.out.print(list.get(i).get(j) + " ");
+            }
+            System.out.println();
+        }
+
+
     }
+
 
 }
 
