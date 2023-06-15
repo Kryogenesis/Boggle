@@ -1,42 +1,55 @@
 import java.util.Collections;
 import java.util.*;
 public class Board {
+
     char[][] letterGrid;
     int size;
-    public Board(int size) {
-        if (size == 4) {
-            letterGrid = new char[size][size];
-            ArrayList<ArrayList<Character>> dice = new ArrayList<>();
-            dice.add(Arrays.asList(new char[] {'R', 'I', 'F', 'O', 'B', 'X'}));
-            dice.add(Arrays.asList(new char[] {'E', 'I', 'F', 'H', 'E', 'Y'}));
-            dice.add(Arrays.asList(new char[] {'D', 'E', 'N', 'O', 'W', 'S'}));
-            dice.add(Arrays.asList(new char[] {'D', 'N', 'K', 'O', 'T', 'U'}));
-            dice.add(Arrays.asList(new char[] {'H', 'M', 'S', 'O', 'R', 'A'}));
-            dice.add(Arrays.asList(new char[] {'L', 'U', 'P', 'E', 'T', 'S'}));
-            dice.add(Arrays.asList(new char[] {'A', 'I', 'C', 'O', 'T', 'A'}));
-            dice.add(Arrays.asList(new char[] {'Y', 'L', 'G', 'K', 'U', 'E'}));
-            
 
+    public Board(int size) {
+        letterGrid = new char[size][size];
+        this.size = size;
+        if (size == 4) {
+            
+            ArrayList<char[]> dice = new ArrayList<>();
+
+            dice.add((new char[] {'R', 'I', 'F', 'O', 'B', 'X'}));
+            dice.add((new char[] {'E', 'I', 'F', 'H', 'E', 'Y'}));
+            dice.add((new char[] {'D', 'E', 'N', 'O', 'W', 'S'}));
+            dice.add((new char[] {'D', 'N', 'K', 'O', 'T', 'U'}));
+            dice.add((new char[] {'H', 'M', 'S', 'O', 'R', 'A'}));
+            dice.add((new char[] {'L', 'U', 'P', 'E', 'T', 'S'}));
+            dice.add((new char[] {'A', 'I', 'C', 'O', 'T', 'A'}));
+            dice.add((new char[] {'Y', 'L', 'G', 'K', 'U', 'E'})); //dice 7
+            dice.add((new char[] {'Q', 'B', 'M', 'O', 'J', 'A'}));
+            dice.add((new char[] {'E', 'H', 'I', 'S', 'P', 'N'}));
+            dice.add((new char[] {'V', 'I', 'E', 'G', 'T', 'N'}));
+            dice.add((new char[] {'A', 'I', 'B', 'L', 'T', 'Y'})); //dice 11
+            dice.add((new char[] {'A', 'E', 'Z', 'V', 'N', 'D'}));
+            dice.add((new char[] {'A', 'R', 'L', 'E', 'S', 'C'}));
+            dice.add((new char[] {'U', 'I', 'W', 'L', 'R', 'G'}));
+            dice.add((new char[] {'A', 'P', 'C', 'E', 'M', 'D'}));
+            
             Collections.shuffle(dice);
-            //initialize the list of dices in a 2d ArrayList, then call collections.shuffle on the 2d
-            //iterate from 1 to 16 to assign a dice to each square on the board, as you assign
-            //pick a random character from the list of characters on the dice
+
             int die = 0;
             for (int i = 0; i < size; i++) {
                 for (int j = 0; j < size; j++) {
-                    letterGrid[i][j] = dice.get(die++).get((int) Math.random()*6);
+                    letterGrid[i][j] = dice.get(die++)[((int) Math.random()*6)];
                 }
             }
+
         }
+
         else if (size == 5) {
+
             //same thing as for size == 4
 
-            letterGrid = new char[size][size];
             for (int i = 0; i < size; i++) {
                 for (int j = 0; j < size; j++) {
                     letterGrid[i][j] = (char) (((int) (Math.random() * 26)) + 65);
                 }
             }
+
         }
     }
 
@@ -50,27 +63,8 @@ public class Board {
     }
 
     public static void main(String[] args) {
-        Board board = new Board(5);
+        Board board = new Board(4);
         board.printBoard();
-
-        ArrayList<ArrayList<Integer>> list = new ArrayList<>();
-        int value = 0;
-        for (int i = 0; i < 4; i++) {
-            ArrayList<Integer> sublist = new ArrayList<>();
-            for (int j = 0; j < 4; j++) {
-                sublist.add(value++);
-            }
-            list.add(sublist);
-        }
-        Collections.shuffle(list);
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j ++) {
-                System.out.print(list.get(i).get(j) + " ");
-            }
-            System.out.println();
-        }
-
-
     }
 
 
